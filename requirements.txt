@@ -1,0 +1,14 @@
+# Core (pinned to the versions used for the paper)
+torch==2.9.0
+transformers==4.57.2
+
+# Scientific / utilities
+numpy>=2.2
+pandas>=2.3
+scikit-learn>=1.7
+tqdm>=4.65
+
+# Image embedding (CLIP) + Wikipedia image download
+pillow>=10.0
+requests>=2.31
+beautifulsoup4>=4.12

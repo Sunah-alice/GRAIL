@@ -1,0 +1,39 @@
+# === Large artifacts: NOT distributed in this repo ===
+# Model checkpoints (biencoder, selectors, alignment, etc.)
+*.pt
+*.bin
+*.safetensors
+
+# Precomputed embeddings
+*.npy
+
+# Generated / processed datasets and id maps
+*.jsonl
+map_*_ids.json
+
+# Downloaded images (wiki crawl)
+gold_images/
+final_dataset_images/
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# === Experiment logs / outputs ===
+wandb/
+logs/
+evaluation/
+*.out
+*.err
+
+# === OS / editor ===
+.DS_Store
+.vscode/
+.env
+
+# === Working notes (remove before publishing if you prefer) ===
+# _RELEASE_STATUS.md
