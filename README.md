@@ -1,13 +1,21 @@
 # GRAIL: Gap-Aware Retrieval for Multimodal Multi-Hop QA
 
+[![arXiv](https://img.shields.io/badge/arXiv-2605.28641-b31b1b.svg)](https://arxiv.org/abs/2605.28641)
+&nbsp;**EMNLP 2026**
+
 Reference implementation for **"Subtraction Gets You More: Gap-Aware Retrieval
-for Multimodal Multi-Hop QA" (GRAIL)**.
+for Multimodal Multi-Hop QA" (GRAIL)**, to appear at the 2026 Conference on
+Empirical Methods in Natural Language Processing (EMNLP 2026).
+
+Paper (arXiv preprint): https://arxiv.org/abs/2605.28641
 
 GRAIL performs implicit, context-subtractive query steering directly in a
 shared multimodal embedding space. Given a question and a partial set of
 evidence, it rewrites the query to point toward the *missing* evidence by
 subtracting the already-covered context — avoiding the "semantic anchoring"
 failure mode of additive / LLM-rewriting retrievers.
+
+![GRAIL overcomes the semantic-anchoring redundancy trap in MMQA retrieval](figure/intro.png)
 
 This repository contains the full, reproducible pipeline: data construction,
 embedding, two-stage training (alignment → gap-aware retrieval), the
@@ -52,6 +60,30 @@ Library modules live at the repository root; the runnable scripts under
 `data/`, `embeddings/`, `pretrain/`, `train/`, `eval/` add the root to
 `sys.path` automatically, so run them from the repository root, e.g.
 `python train/train_grail.py ...`.
+
+---
+
+## Results
+
+Macro-averaged recall on the MultimodalQA validation split
+(`q_type ∈ {Compare, Compose, Intersect}`). GRAIL and the task-adaptive hybrid
+consistently beat both the additive baseline and explicit LLM query
+regeneration, at a fraction of the latency. (See the paper for full tables.)
+
+| Method               | R@1   | R@5   | R@10  | R@20  | Latency   |
+|----------------------|-------|-------|-------|-------|-----------|
+| Query Only           | 16.24 | 32.68 | 40.51 | 48.54 | 2–5 ms    |
+| Closed-Book (LLM)    | 13.78 | 26.89 | 34.65 | 42.69 | 0.6–1.0 s |
+| IRCoT (LLM)          | 13.42 | 24.87 | 30.18 | 36.21 | 1.1–1.6 s |
+| Ans-Augmented (LLM)  | 16.54 | 33.24 | 39.96 | 48.86 | 1.2–1.8 s |
+| Additive             | 11.57 | 25.89 | 32.11 | 39.82 | 2–5 ms    |
+| **GRAIL**            | 17.55 | 33.61 | 40.81 | 47.50 | 3–6 ms    |
+| **Hybrid (ours)**    | **22.21** | **39.94** | **46.90** | **53.80** | 3–6 ms |
+
+The task-adaptive hybrid framework routes each query to the specialist best
+suited to its reasoning type, yielding a best-of-both-worlds gain:
+
+![Task-adaptive hybrid framework vs. specialists](figure/hybrid.png)
 
 ---
 
@@ -207,6 +239,22 @@ All models are trained for **100 epochs** (fixed).
 The LLM-based query-regeneration baselines (Closed-Book, IRCoT,
 Answer-Augmented; Section 5.3 of the paper) rely on an external `gpt-4o-mini`
 API and are out of scope for this code release.
+
+---
+
+## Citation
+
+If you use this code, please cite the paper. (This is the arXiv preprint entry;
+it will be updated once the EMNLP 2026 proceedings are available.)
+
+```bibtex
+@article{o2026grail,
+  title   = {Subtraction Gets You More: Gap-Aware Retrieval for Multimodal Multi-Hop QA},
+  author  = {O, Sunah and Lee, Jay-Yoon},
+  journal = {arXiv preprint arXiv:2605.28641},
+  year    = {2026}
+}
+```
 
 ---
 
