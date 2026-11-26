@@ -7,7 +7,7 @@ Reference implementation for **"Subtraction Gets You More: Gap-Aware Retrieval
 for Multimodal Multi-Hop QA" (GRAIL)**, to appear at the 2026 Conference on
 Empirical Methods in Natural Language Processing (EMNLP 2026).
 
-Paper (arXiv preprint): https://arxiv.org/abs/2605.28641
+Paper (arXiv preprint): https://arxiv.org/abs/2605.28641https://github.com/Sunah-alice/GRAIL/blob/main/README.md
 
 GRAIL performs implicit, context-subtractive query steering directly in a
 shared multimodal embedding space. Given a question and a partial set of
@@ -244,15 +244,27 @@ API and are out of scope for this code release.
 
 ## Citation
 
-If you use this code, please cite the paper. (This is the arXiv preprint entry;
-it will be updated once the EMNLP 2026 proceedings are available.)
+If you use this code, please cite the paper.
 
 ```bibtex
-@article{o2026grail,
-  title   = {Subtraction Gets You More: Gap-Aware Retrieval for Multimodal Multi-Hop QA},
-  author  = {O, Sunah and Lee, Jay-Yoon},
-  journal = {arXiv preprint arXiv:2605.28641},
-  year    = {2026}
+@inproceedings{o-lee-2026-subtraction,
+    title = "Subtraction Gets You More: Gap-Aware Retrieval for Multimodal Multi-Hop {QA}",
+    author = "O, Sunah  and
+      Lee, Jay-Yoon",
+    editor = "Lee, Hung-Yi  and
+      Dev, Sunipa  and
+      Li, Junyi Jessy  and
+      Elliott, Desmond",
+    booktitle = "Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing",
+    month = oct,
+    year = "2026",
+    address = "Budapest, Hungary",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.emnlp-main.2132/",
+    doi = "10.18653/2026.emnlp-main.2132",
+    pages = "48472--48490",
+    ISBN = "979-8-89176-459-0",
+    abstract = "In multimodal multi-hop question answering, we focus on the initial retrieval stage via two distinct tasks: (1) evidence set completion, retrieving missing evidence given context, and (2) sequential pool construction, iteratively building the top-$K$ pool from the scratch. Under these settings, we point out that conventional iterative retrieval frameworks often suffer from Semantic Anchoring, where previously fetched evidence traps the retriever and yields entity-centric redundancy. To break this trap, we propose GRAIL (Gap-aware Retrieval via Adaptive Implicit Localization), a paradigm that performs implicit query rewriting directly at the embedding level. By context-subtractive query steering, GRAIL excels at compositional cross-modal reasoning, while additive embedding updates show strength on localized information aggregation. To leverage these complementary strengths, we propose a Task-Adaptive Hybrid Framework, achieving a 35.7{\%} macro-averaged performance gain on the MultimodalQA evidence set completion task. Extensive evaluations demonstrate that sequential GRAIL retrieves in a superior, noise-resilient manner, significantly expanding the search horizon through iterative gap-aware optimization."
 }
 ```
 
